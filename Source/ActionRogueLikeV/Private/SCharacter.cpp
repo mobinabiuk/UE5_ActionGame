@@ -8,6 +8,8 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "SInteractionComponent.h"
 #include "SAttributeComponent.h"
+#include "SProjectileBase.h"
+#include "SDashProjectile.h"
 
 
 // Sets default values
@@ -82,6 +84,7 @@ void ASCharacter::PrimaryAttack()
 	
 }
 
+
 void ASCharacter::PrimaryInteract()
 {
 	if (InteractionComp)
@@ -107,6 +110,72 @@ void ASCharacter::PrimaryAttack_TimeLapsed()
 	}
 	
 }
+
+//void ASCharacter::BlackHoleAttack()
+//{
+//	PlayAnimMontage(AttackAnim);
+//	GetworldTimerManager().SetTimer(TimerHandle_BlackholeAttack, this, &ASCharacter::BlackholeAttack_TimeLapsed, AttackAnimDelay);
+//}
+//
+//void ASCharacter::BlackholeAttack_TimeLapsed()
+//{
+//	SpawnProjectile(BlackHoleProjectileClass);
+//}
+//
+//void ASCharacter::Dash() 
+//{
+//	PlayAnimMontage(AttackAnim);
+//	GetworldTimerManager().SetTimer(TimerHandle_Dash, this, &ASCharacter::Dash_TimeLapsed, AttackAnimDelay);
+//}
+//
+//void ASCharacter::Dash_TimeLapsed() 
+//{
+//	SpawnProjectile(DashProjectileClass);
+//}
+//
+//void ASCharacter::SpawnProjectile(TSubclassOf<AActor> ClassToSpawn)
+//{
+//	if (ensureAlways(ClassToSpawn))
+//	{
+//		FVector HandLocation = GetMesh()->GetSocketLocation("Muzzle_01");
+//
+//		FActorSpawnParameters SpawnParams;
+//		SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+//		SpawnParams.Instigator = this;
+//
+//		FCollisionShape Shape;
+//		Shape.SetSphere(20.0f);
+//
+//		// Ignore Player
+//		FCollisionQueryParams Params;
+//		Params.AddIgnoredActor(this);
+//
+//		FCollisionObjectQueryParams ObjParams;
+//		ObjParams.AddObjectTypesToQuery(ECC_WorldDynamic);
+//		ObjParams.AddObjectTypesToQuery(ECC_WorldStatic);
+//		ObjParams.AddObjectTypesToQuery(ECC_Pawn);
+//
+//		FVector TraceStart = CameraComp->GetComponentLocation();
+//
+//		// endpoint far into the look-at distance (not too far, still adjust somewhat towards crosshair on a miss)
+//		FVector TraceEnd = CameraComp->GetComponentLocation() + (GetControlRotation().Vector() * 5000);
+//
+//		FHitResult Hit;
+//		// returns true if we got to a blocking hit
+//		if (GetWorld()->SweepSingleByObjectType(Hit, TraceStart, TraceEnd, FQuat::Identity, ObjParams, Shape, Params))
+//		{
+//			// Overwrite trace end with impact point in world
+//			TraceEnd = Hit.ImpactPoint;
+//		}
+//
+//		// find new direction/rotation from Hand pointing to impact point in world.
+//		FRotator ProjRotation = FRotationMatrix::MakeFromX(TraceEnd - HandLocation).Rotator();
+//
+//		FTransform SpawnTM = FTransform(ProjRotation, HandLocation);
+//		GetWorld()->SpawnActor<AActor>(ClassToSpawn, SpawnTM, SpawnParams);
+//	}
+//}
+
 
 // Called to bind functionality to input
 void ASCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
