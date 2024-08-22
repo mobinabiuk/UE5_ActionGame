@@ -53,8 +53,10 @@ protected:
 	void PrimaryInteract();
 	void PrimaryAttack_TimeLapsed();
 
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+	UFUNCTION()
+	void OnHealthChanged(AActor* InstigatorActor, USAttributeComponent* OwningComp, float NewHealth, float Delta);
+	
+	virtual void PostInitializeComponents() override;
 
 public:	
 	// Called every frame

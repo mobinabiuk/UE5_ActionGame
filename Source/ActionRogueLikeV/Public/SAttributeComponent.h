@@ -14,6 +14,9 @@ class ACTIONROGUELIKEV_API USAttributeComponent : public UActorComponent
 	GENERATED_BODY()
 
 public:	
+	UFUNCTION(BlueprintCallable)
+	bool IsAlive() const;
+
 	UPROPERTY(BlueprintAssignable)
 	FOnHealthChanged OnHealthChanged;
 	// Sets default values for this component's properties
@@ -27,4 +30,6 @@ protected:
 public:	
 	UFUNCTION(BlueprintCallable,Category = "Attributes")
 	bool ApplyHealthChange(float Delta);
+
+	
 };

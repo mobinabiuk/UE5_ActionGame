@@ -30,11 +30,10 @@ ASCharacter::ASCharacter()
 	AttributeComp = CreateDefaultSubobject<USAttributeComponent>("AttributeComp");
 }
 
-// Called when the game starts or when spawned
-void ASCharacter::BeginPlay()
+void ASCharacter::PostInitializeComponents()
 {
-	Super::BeginPlay();
-	
+	Super::PostInitializeComponents();
+	AttributeComp->OnHealthChanged.AddDynamic(this, &ASCharacter::OnHealthChanged);
 }
 
 // Called every frame
@@ -110,6 +109,18 @@ void ASCharacter::PrimaryAttack_TimeLapsed()
 	}
 	
 }
+
+void ASCharacter::OnHealthChanged(AActor* InstigatorActor, USAttributeComponent* OwningComp, float NewHealth, float Delta)
+{
+	if (NewHealth <= 0.0f && Delta < 0.0f )
+	{
+		//prevent character from moving after death
+	    APlayerController* PC =	Cast<APlayerController>(GetController());
+		DisableInput(PC);
+	}
+}
+
+
 
 //void ASCharacter::BlackHoleAttack()
 //{
