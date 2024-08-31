@@ -15,11 +15,11 @@ void ASAIController::BeginPlay()
 	//Starts execution of behavior tree
 	RunBehaviorTree(BehaviorTree);
 	//retrieves a reference to the player's pawn in the game.
-    APawn* MyPawn =	UGameplayStatics::GetPlayerPawn(this, 0);
-	if (MyPawn)
-	{
+    //APawn* MyPawn =	UGameplayStatics::GetPlayerPawn(this, 0);
+	//if (MyPawn)
+	//{
 		//sets a value in the AI's Blackboard
-		GetBlackboardComponent()->SetValueAsVector("MoveToLocation",MyPawn->GetActorLocation());
-		GetBlackboardComponent()->SetValueAsObject("TargetActor", MyPawn);
-	}
+		//GetBlackboardComponent()->SetValueAsVector("MoveToLocation",MyPawn->GetActorLocation());
+		//GetBlackboardComponent()->SetValueAsObject("TargetActor", MyPawn);
+	//}
 }
