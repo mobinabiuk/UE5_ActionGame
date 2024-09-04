@@ -8,7 +8,7 @@
 // Sets default values for this component's properties
 USAttributeComponent::USAttributeComponent()
 {
-	HealthMax = 100;
+	HealthMax = 200;
 	Health = HealthMax;
 }
 
